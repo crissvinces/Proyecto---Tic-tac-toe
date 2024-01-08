@@ -6,9 +6,12 @@ package ejerc.proyecto.tictactoe.ed;
 
 import java.util.List;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 /**
@@ -20,7 +23,21 @@ public class Tablero extends Application {
      @Override
     public void start(Stage stage) throws Exception {
         GridPane tablero= new GridPane();
-        Scene scene = new Scene(new StackPane(tablero), 340, 240);
+        tablero.setAlignment(Pos.CENTER);
+        tablero.setHgap(10);
+        tablero.setVgap(10);
+        for (int i = 1; i < 5; i++) {
+            Line line = new Line(0, i * 100, 300, i * 100);
+            line.setStroke(Color.BLACK);
+            tablero.getChildren().add(line);
+        }
+        // Agregar líneas verticales
+        for (int i = 1; i < 3; i++) {
+            Line line = new Line(i * 100, 0, i * 100, 200);
+            line.setStroke(Color.BLACK);
+            tablero.getChildren().add(line);
+        }
+        Scene scene = new Scene(tablero, 340, 240);
         stage.setScene(scene);
         stage.show();
     }

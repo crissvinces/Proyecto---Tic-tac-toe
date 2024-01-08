@@ -39,6 +39,8 @@ public class App extends Application {
             contenedor.setAlignment(Pos.CENTER);
             root.setTop(lbl_title);
             root.setCenter(contenedor);
+            root.setStyle("-fx-background-color: lightblue;");
+            btn_iniciar_juego.setOnMouseClicked(e->mostrarMenu());
             Scene scene = new Scene(new StackPane(root), 540, 340);
             stage.setScene(scene);
             stage.show();
@@ -49,6 +51,14 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void mostrarMenu() {
+        try {
+            Tablero VentanaCrearCli = new Tablero();
+            VentanaCrearCli.start(new Stage());
+        } catch (Exception ex) {
+        }
     }
 
 }
