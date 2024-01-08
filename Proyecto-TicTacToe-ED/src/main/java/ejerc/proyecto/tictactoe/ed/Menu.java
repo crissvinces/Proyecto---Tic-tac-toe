@@ -5,6 +5,12 @@
 package ejerc.proyecto.tictactoe.ed;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +21,27 @@ public class Menu extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Label lbl_quienInicia= new Label("Quieres iniciar el juego?");
+        Label lbl_queEres= new Label("Cual quieres ser?");
+        CheckBox CB_tu= new CheckBox("Yo");
+        CheckBox CB_compu= new CheckBox("La maquina");
+        CheckBox CB_X= new CheckBox("X");
+        CheckBox CB_O= new CheckBox("O");
+        VBox contenedor= new VBox();
+        HBox caja1= new HBox();
+        HBox caja2= new HBox();
+        caja1.getChildren().add(CB_tu);
+        caja1.getChildren().add(CB_compu);
+        caja2.getChildren().add(CB_X);
+        caja2.getChildren().add(CB_O);
+        contenedor.getChildren().add(lbl_quienInicia);
+        contenedor.getChildren().add(caja1);
+        contenedor.getChildren().add(lbl_queEres);
+        contenedor.getChildren().add(caja2);
+        Scene scene = new Scene(new StackPane(contenedor), 540, 340);
+        stage.setScene(scene);
+        stage.show();
+        
     }
     
 }

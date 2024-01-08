@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author crist
  */
-public class Tablero extends Application {
+public class Tablero<E> extends Application {
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -43,6 +43,13 @@ public class Tablero extends Application {
     }
 
     private List<Tablero> hijos;
+    private int[][] matriz=new int[3][3];
+    
+    private boolean actualizarMatriz(){
+        
+         return false;
+        
+    }
    
     
 }

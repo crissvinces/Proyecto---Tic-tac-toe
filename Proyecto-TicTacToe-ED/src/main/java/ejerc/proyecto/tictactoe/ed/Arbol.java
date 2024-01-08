@@ -11,4 +11,9 @@ package ejerc.proyecto.tictactoe.ed;
 public class Arbol {
     private Tablero tablero;
     
+    public Tablero minimax(){
+        
+        return null;
+    }
+    
 }

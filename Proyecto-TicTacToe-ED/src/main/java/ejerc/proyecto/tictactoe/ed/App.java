@@ -23,6 +23,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        
+        //Arranca el programa
         Label lbl_title= new Label("Tic Tac Toe");
         Button btn_iniciar_juego=new Button("Iniciar el Juego");
         Font fuente_lbl = Font.font("Verdana", FontWeight.EXTRA_BOLD,25);
@@ -55,7 +57,7 @@ public class App extends Application {
 
     private void mostrarMenu() {
         try {
-            Tablero VentanaCrearCli = new Tablero();
+            Menu VentanaCrearCli = new Menu();
             VentanaCrearCli.start(new Stage());
         } catch (Exception ex) {
         }
