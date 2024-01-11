@@ -57,8 +57,8 @@ public class App extends Application {
 
     private void mostrarMenu() {
         try {
-            Menu VentanaCrearCli = new Menu();
-            VentanaCrearCli.start(new Stage());
+            Tablero ventanaMenu = new Tablero();
+            ventanaMenu.start(new Stage());
         } catch (Exception ex) {
         }
     }
