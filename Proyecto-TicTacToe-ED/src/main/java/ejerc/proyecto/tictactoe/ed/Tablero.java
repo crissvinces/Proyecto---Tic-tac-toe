@@ -4,12 +4,15 @@
  */
 package ejerc.proyecto.tictactoe.ed;
 
+import java.io.FileInputStream;
 import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -36,41 +39,110 @@ public class Tablero<E> extends Application {
         Label lbl_title= new Label("INICIO EL JUEGO!!!");
         Font fuente_lbl = Font.font("Verdana", FontWeight.EXTRA_BOLD,25);
         lbl_title.setFont(fuente_lbl);
-        lbl_title.setAlignment(Pos.CENTER);
+        lbl_title.setAlignment(Pos.TOP_CENTER);
         
         VBox contenedor=new VBox();
         contenedor.setSpacing(10);
         contenedor.setAlignment(Pos.CENTER);
         
+        
         GridPane tablero= new GridPane();
         tablero.setAlignment(Pos.CENTER);
-        tablero.setHgap(7);
-        tablero.setVgap(7);
+        tablero.setHgap(0);
+        tablero.setVgap(0);
         tablero.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
         tablero.setStyle("-fx-background-color: black;");
-        tablero.setMinSize(200, 200);
-        tablero.setMaxSize(200, 200);
-        tablero.setPrefSize(200, 200);
+        tablero.setMinSize(250, 235);
+        tablero.setMaxSize(250, 235);
+        tablero.setPrefSize(250, 235);
         
-        Button btn_1=new Button("1");
-        Button btn_2=new Button("2");
-        Button btn_3=new Button("3");
-        Button btn_4=new Button("4");
-        Button btn_5=new Button("5");
-        Button btn_6=new Button("6");
-        Button btn_7=new Button("7");
-        Button btn_8=new Button("8");
-        Button btn_9=new Button("9");
+        FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Blancoo.png");
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(70); 
+        imageView.setFitHeight(70);
         
-        btn_1.setPrefSize(80, 80);
-        btn_2.setPrefSize(80, 80);
-        btn_3.setPrefSize(80, 80);
-        btn_4.setPrefSize(80, 80);
-        btn_5.setPrefSize(80, 80);
-        btn_6.setPrefSize(80, 80);
-        btn_7.setPrefSize(80, 80);
-        btn_8.setPrefSize(80, 80);
-        btn_9.setPrefSize(80, 80);
+        ImageView imageView2 = new ImageView(image);
+        imageView2.setFitWidth(70); 
+        imageView2.setFitHeight(70);
+        
+        ImageView imageView3= new ImageView(image);
+        imageView3.setFitWidth(70); 
+        imageView3.setFitHeight(70);
+        
+        ImageView imageView4= new ImageView(image);
+        imageView4.setFitWidth(70); 
+        imageView4.setFitHeight(70);
+        
+        ImageView imageView5= new ImageView(image);
+        imageView5.setFitWidth(70); 
+        imageView5.setFitHeight(70);
+        
+        ImageView imageView6= new ImageView(image);
+        imageView6.setFitWidth(70); 
+        imageView6.setFitHeight(70);
+        
+        ImageView imageView7= new ImageView(image);
+        imageView7.setFitWidth(70); 
+        imageView7.setFitHeight(70);
+        
+        ImageView imageView8= new ImageView(image);
+        imageView8.setFitWidth(70); 
+        imageView8.setFitHeight(70);
+        
+        ImageView imageView9= new ImageView(image);
+        imageView9.setFitWidth(70); 
+        imageView9.setFitHeight(70);
+        
+        
+        
+        
+        Button btn_1=new Button();
+        btn_1.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_1.setGraphic(imageView);
+        
+        
+        Button btn_2=new Button();
+        btn_2.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_2.setGraphic(imageView2);
+        
+        Button btn_3=new Button();
+        btn_3.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_3.setGraphic(imageView3);
+        
+        Button btn_4=new Button();
+        btn_4.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_4.setGraphic(imageView4);
+        
+        Button btn_5=new Button();
+        btn_5.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_5.setGraphic(imageView5);
+        
+        Button btn_6=new Button();
+        btn_6.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_6.setGraphic(imageView6);
+        
+        Button btn_7=new Button();
+        btn_7.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_7.setGraphic(imageView7);
+        
+        Button btn_8=new Button();
+        btn_8.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_8.setGraphic(imageView8);
+        
+        Button btn_9=new Button();
+        btn_9.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
+        btn_9.setGraphic(imageView9);
+        
+        btn_1.setPrefSize(70, 70);
+        btn_2.setPrefSize(70, 70);
+        btn_3.setPrefSize(70, 70);
+        btn_4.setPrefSize(70, 70);
+        btn_5.setPrefSize(70, 70);
+        btn_6.setPrefSize(70, 70);
+        btn_7.setPrefSize(70, 70);
+        btn_8.setPrefSize(70, 70);
+        btn_9.setPrefSize(70, 70);
         
         tablero.add(btn_1, 0, 0);
         tablero.add(btn_2, 1, 0);
