@@ -47,6 +47,10 @@ public class Tablero<E> extends Application {
         tablero.setHgap(7);
         tablero.setVgap(7);
         tablero.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2))));
+        tablero.setStyle("-fx-background-color: black;");
+        tablero.setMinSize(200, 200);
+        tablero.setMaxSize(200, 200);
+        tablero.setPrefSize(200, 200);
         
         Button btn_1=new Button("1");
         Button btn_2=new Button("2");
@@ -58,15 +62,15 @@ public class Tablero<E> extends Application {
         Button btn_8=new Button("8");
         Button btn_9=new Button("9");
         
-        btn_1.setPrefSize(40, 40);
-        btn_2.setPrefSize(40, 40);
-        btn_3.setPrefSize(40, 40);
-        btn_4.setPrefSize(40, 40);
-        btn_5.setPrefSize(40, 40);
-        btn_6.setPrefSize(40, 40);
-        btn_7.setPrefSize(40, 40);
-        btn_8.setPrefSize(40, 40);
-        btn_9.setPrefSize(40, 40);
+        btn_1.setPrefSize(80, 80);
+        btn_2.setPrefSize(80, 80);
+        btn_3.setPrefSize(80, 80);
+        btn_4.setPrefSize(80, 80);
+        btn_5.setPrefSize(80, 80);
+        btn_6.setPrefSize(80, 80);
+        btn_7.setPrefSize(80, 80);
+        btn_8.setPrefSize(80, 80);
+        btn_9.setPrefSize(80, 80);
         
         tablero.add(btn_1, 0, 0);
         tablero.add(btn_2, 1, 0);
