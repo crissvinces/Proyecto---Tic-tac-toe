@@ -5,6 +5,7 @@
 package ejerc.proyecto.tictactoe.ed;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -32,6 +33,9 @@ import javafx.stage.Stage;
  * @author crist
  */
 public class Tablero<E> extends Application {
+    Button btn_1;
+    private int X;
+    private int O;
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -97,7 +101,7 @@ public class Tablero<E> extends Application {
         
         
         
-        Button btn_1=new Button();
+        btn_1=new Button();
         btn_1.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_1.setGraphic(imageView);
         
@@ -157,6 +161,14 @@ public class Tablero<E> extends Application {
         contenedor.getChildren().add(lbl_title);
         contenedor.getChildren().add(tablero);
         
+        btn_1.setOnMouseClicked(e -> {
+            try {
+                cambiarImagen();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
         Scene scene = new Scene(contenedor, 640, 400);
         stage.setScene(scene);
         stage.show();
@@ -168,6 +180,32 @@ public class Tablero<E> extends Application {
     private boolean actualizarMatriz(){
         
          return false;
+        
+    }
+    
+    public Tablero (int X, int O){
+        this.X=X;
+        this.O=O;
+    }
+    
+    private void cambiarImagen() throws FileNotFoundException{
+        
+        if(X==1){
+            FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
+            Image image = new Image(input);
+            ImageView imageView= new ImageView(image);
+            imageView.setFitWidth(70); 
+            imageView.setFitHeight(70);
+            btn_1.setGraphic(imageView);
+        }
+        if(O==1){
+            FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
+            Image image = new Image(input);
+            ImageView imageView= new ImageView(image);
+            imageView.setFitWidth(70); 
+            imageView.setFitHeight(70);
+            btn_1.setGraphic(imageView);
+        }
         
     }
    

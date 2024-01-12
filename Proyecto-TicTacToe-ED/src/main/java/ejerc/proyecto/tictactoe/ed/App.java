@@ -20,32 +20,38 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+    
+    Stage stage1;
+    
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage1) {
         
         //Arranca el programa
         Label lbl_title= new Label("Tic Tac Toe");
         Button btn_iniciar_juego=new Button("Iniciar el Juego");
-        Font fuente_lbl = Font.font("Verdana", FontWeight.EXTRA_BOLD,25);
-        lbl_title.setFont(fuente_lbl);
+        lbl_title.setStyle("-fx-font-family: 'Verdana'; -fx-font-size: 35;-fx-text-fill: white;-fx-font-weight: bold;");
         BorderPane root= new BorderPane();
         BorderPane.setAlignment(lbl_title, Pos.CENTER);
         try {
             FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/tic tac toe.png");
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(200);  // Establecer el ancho deseado
+            imageView.setFitHeight(200);
+            
             VBox contenedor = new VBox(20);
             contenedor.getChildren().add(imageView);
             contenedor.getChildren().add(btn_iniciar_juego);
             contenedor.setAlignment(Pos.CENTER);
+            
             root.setTop(lbl_title);
             root.setCenter(contenedor);
-            root.setStyle("-fx-background-color: lightblue;");
+            root.setStyle("-fx-background-color: midnightblue;");
+            
             btn_iniciar_juego.setOnMouseClicked(e->mostrarMenu());
             Scene scene = new Scene(new StackPane(root), 540, 340);
-            stage.setScene(scene);
-            stage.show();
+            stage1.setScene(scene);
+            stage1.show();
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen: " + e.getMessage());
         }
@@ -57,7 +63,7 @@ public class App extends Application {
 
     private void mostrarMenu() {
         try {
-            Tablero ventanaMenu = new Tablero();
+            Menu ventanaMenu = new Menu();
             ventanaMenu.start(new Stage());
         } catch (Exception ex) {
         }
