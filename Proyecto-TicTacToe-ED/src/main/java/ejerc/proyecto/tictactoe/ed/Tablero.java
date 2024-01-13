@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
@@ -42,13 +44,15 @@ public class Tablero<E> extends Application {
     public void start(Stage stage) throws Exception {
         
         Label lbl_title= new Label("INICIO EL JUEGO!!!");
-        Font fuente_lbl = Font.font("Verdana", FontWeight.EXTRA_BOLD,25);
+        Font fuente_lbl = Font.font("Verdana", FontWeight.EXTRA_BOLD,35);
         lbl_title.setFont(fuente_lbl);
-        lbl_title.setAlignment(Pos.TOP_CENTER);
+        lbl_title.setStyle("-fx-text-fill: white;");
+
         
-        VBox contenedor=new VBox();
-        contenedor.setSpacing(10);
-        contenedor.setAlignment(Pos.CENTER);
+        BorderPane contenedor=new BorderPane();
+        BorderPane.setAlignment(lbl_title, Pos.TOP_CENTER);
+        contenedor.setStyle("-fx-background-color: midnightblue;");
+        BorderPane.setMargin(lbl_title, new Insets(20, 0, 10, 0));
         
         
         GridPane tablero= new GridPane();
@@ -159,8 +163,9 @@ public class Tablero<E> extends Application {
         tablero.add(btn_8, 1, 2);
         tablero.add(btn_9, 2, 2);
         
-        contenedor.getChildren().add(lbl_title);
-        contenedor.getChildren().add(tablero);
+        
+        contenedor.setTop(lbl_title);
+        contenedor.setCenter(tablero);
         
         btn_1.setOnMouseClicked(e -> {
             try {
@@ -229,10 +234,4 @@ public class Tablero<E> extends Application {
         }
         
     }
-    
-    private void cambiarImagenPersona(){
-        
-    }
-   
-    
 }
