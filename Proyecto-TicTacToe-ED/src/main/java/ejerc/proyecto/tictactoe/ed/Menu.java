@@ -8,6 +8,8 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -117,7 +119,9 @@ public class Menu extends Application{
     
     private void acciones() throws Exception{
         recoleccion();
-        mostrarVentanaTablero();
+        if(recoleccion() == true){
+            mostrarVentanaTablero();
+        }
     }
 
     private void mostrarVentanaTablero() throws Exception {
@@ -128,21 +132,29 @@ public class Menu extends Application{
         }
     }
     
-    private void recoleccion(){
+    private boolean recoleccion(){
         boolean tu = CB_tu.isSelected();
         boolean X = CB_X.isSelected();
         boolean compu = CB_compu.isSelected();
         boolean O = CB_O.isSelected();
         
-            if(X==true && O==false){
+        if(!tu && !compu || tu && compu){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error de Seleccion");
+            alert.setContentText("Porfavor escoga solamente una de las opciones");
+            alert.showAndWait();
+            return false;
+        }
+        if(X==true && O==false){
                 this.Jugador1=1;
                 this.Jugador2=2;
-            }if(O==true){
+        }
+        if(O==true){
                 this.Jugador1=2;
                 this.Jugador2=1;
-            }
-        
-        
+        }
+        return true;
     }
 
     public int getJugador1() {
