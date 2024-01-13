@@ -36,6 +36,7 @@ public class Tablero<E> extends Application {
     Button btn_1;
     private int X;
     private int O;
+    private int turno;
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -183,29 +184,53 @@ public class Tablero<E> extends Application {
         
     }
     
-    public Tablero (int X, int O){
+    public Tablero (int X, int O, int turno){
         this.X=X;
         this.O=O;
+        this.turno=turno;
     }
     
     private void cambiarImagen() throws FileNotFoundException{
+        if(this.turno==1){
+            if(X==1){
+                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                btn_1.setGraphic(imageView);
+            }
+            if(O==1){
+                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                btn_1.setGraphic(imageView);
+            }
+        }
+        if(this.turno==2){
+            if(X==-1){
+                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                btn_1.setGraphic(imageView);
+            }
+            if(O==-1){
+                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                btn_1.setGraphic(imageView);
+            }
+        }
         
-        if(X==1){
-            FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
-            Image image = new Image(input);
-            ImageView imageView= new ImageView(image);
-            imageView.setFitWidth(70); 
-            imageView.setFitHeight(70);
-            btn_1.setGraphic(imageView);
-        }
-        if(O==1){
-            FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
-            Image image = new Image(input);
-            ImageView imageView= new ImageView(image);
-            imageView.setFitWidth(70); 
-            imageView.setFitHeight(70);
-            btn_1.setGraphic(imageView);
-        }
+    }
+    
+    private void cambiarImagenPersona(){
         
     }
    

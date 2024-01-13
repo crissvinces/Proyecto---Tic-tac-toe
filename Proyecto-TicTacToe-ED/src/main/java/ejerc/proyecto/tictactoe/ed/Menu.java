@@ -30,9 +30,9 @@ public class Menu extends Application{
     CheckBox CB_X;
     CheckBox CB_compu;
     CheckBox CB_tu;
-    private int Jugador1;
-    private int Jugador2;
-    private String turno;
+    private int X;
+    private int O;
+    private int turno;
     private Tablero tablero;
     
 
@@ -126,10 +126,22 @@ public class Menu extends Application{
 
     private void mostrarVentanaTablero() throws Exception {
         try {
-            tablero = new Tablero(Jugador1,Jugador2);
+            tablero = new Tablero(X,O, turno);
             tablero.start(new Stage());
         } catch (Exception ex) {
         }
+    }
+    
+    private boolean validacionTurno(boolean tu, boolean compu){
+        if(tu){
+            this.turno=1;
+            return true;
+        }
+        if(compu){
+            this.turno=2;
+            return true;
+        }
+        return false;
     }
     
     private boolean recoleccion(){
@@ -138,7 +150,8 @@ public class Menu extends Application{
         boolean compu = CB_compu.isSelected();
         boolean O = CB_O.isSelected();
         
-        if(!tu && !compu || tu && compu){
+        
+        if(!tu && !compu || tu && compu || X && O || !X && !O){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Error de Seleccion");
@@ -147,30 +160,34 @@ public class Menu extends Application{
             return false;
         }
         if(X==true && O==false){
-                this.Jugador1=1;
-                this.Jugador2=2;
+                this.X=1;
+                this.O=-1;
+                validacionTurno(tu, compu);
         }
         if(O==true){
-                this.Jugador1=2;
-                this.Jugador2=1;
+                this.X=-1;
+                this.O=1;
+                validacionTurno(tu, compu);
         }
         return true;
     }
 
-    public int getJugador1() {
-        return Jugador1;
+    public int getX() {
+        return X;
     }
 
-    public void setJugador1(int Jugador1) {
-        this.Jugador1 = Jugador1;
+    public void setX(int X) {
+        this.X = X;
     }
 
-    public int getJugador2() {
-        return Jugador2;
+    public int getO() {
+        return O;
     }
 
-    public void setJugador2(int Jugador2) {
-        this.Jugador2 = Jugador2;
+    public void setO(int O) {
+        this.O = O;
     }
+
+    
     
 }
