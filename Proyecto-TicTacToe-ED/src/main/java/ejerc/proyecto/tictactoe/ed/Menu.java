@@ -133,13 +133,13 @@ public class Menu extends Application{
     }
     
     private boolean validacionTurno(boolean tu, boolean compu){
-        if(tu){
+        if(tu && !compu){
             this.turno=1;
             return true;
         }
-        if(compu){
+        if(compu && !tu){
             this.turno=2;
-            return true;
+            
         }
         return false;
     }

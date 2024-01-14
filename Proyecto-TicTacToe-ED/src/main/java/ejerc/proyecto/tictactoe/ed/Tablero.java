@@ -46,7 +46,7 @@ public class Tablero<E> extends Application {
     Button btn_9;
     private int X;
     private int O;
-    private int turno;
+    int turno=0;
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -259,9 +259,8 @@ public class Tablero<E> extends Application {
         this.turno=turno;
     }
     
-    private boolean actualizarTurno(int valor){
-        this.turno=valor;
-        return true;
+    public void actualizarTurno(){
+        this.turno=(this.turno % 2) + 1;
     }
     
     private void cambiarImagen(Button boton) throws FileNotFoundException{
@@ -273,8 +272,9 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
+                
             }
-            if(O==1){
+            else if(O==1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
@@ -283,7 +283,7 @@ public class Tablero<E> extends Application {
                 boton.setGraphic(imageView);
             }
         }
-        if(this.turno==2){
+        else if(this.turno==2){
             if(X==-1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
                 Image image = new Image(input);
@@ -291,18 +291,16 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                
             }
-            if(O==-1){
+            else if(O==-1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                
             }
         }
-        
+        actualizarTurno();
     }
 }
