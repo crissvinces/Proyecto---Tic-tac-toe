@@ -259,16 +259,9 @@ public class Tablero<E> extends Application {
         this.turno=turno;
     }
     
-    private boolean actualizarTurno(){
-        if(this.turno==1){
-            this.turno=2;
-            return true;
-        }
-        if(this.turno==2){
-            this.turno=1;
-            return true;
-        }
-        return false;
+    private boolean actualizarTurno(int valor){
+        this.turno=valor;
+        return true;
     }
     
     private void cambiarImagen(Button boton) throws FileNotFoundException{
@@ -280,6 +273,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
+                this.turno=2;
             }
             if(O==1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -288,6 +282,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
+                this.turno=2;
             }
         }
         if(this.turno==2){
@@ -298,7 +293,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                
+                this.turno=1;
             }
             if(O==-1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -307,7 +302,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-               
+                this.turno=1;
             }
         }
         
