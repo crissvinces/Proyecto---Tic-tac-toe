@@ -36,6 +36,14 @@ import javafx.stage.Stage;
  */
 public class Tablero<E> extends Application {
     Button btn_1;
+    Button btn_2;
+    Button btn_3;
+    Button btn_4;
+    Button btn_5;
+    Button btn_6;
+    Button btn_7;
+    Button btn_8;
+    Button btn_9;
     private int X;
     private int O;
     private int turno;
@@ -111,35 +119,35 @@ public class Tablero<E> extends Application {
         btn_1.setGraphic(imageView);
         
         
-        Button btn_2=new Button();
+        btn_2=new Button();
         btn_2.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_2.setGraphic(imageView2);
         
-        Button btn_3=new Button();
+        btn_3=new Button();
         btn_3.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_3.setGraphic(imageView3);
         
-        Button btn_4=new Button();
+        btn_4=new Button();
         btn_4.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_4.setGraphic(imageView4);
         
-        Button btn_5=new Button();
+        btn_5=new Button();
         btn_5.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_5.setGraphic(imageView5);
         
-        Button btn_6=new Button();
+        btn_6=new Button();
         btn_6.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_6.setGraphic(imageView6);
         
-        Button btn_7=new Button();
+        btn_7=new Button();
         btn_7.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_7.setGraphic(imageView7);
         
-        Button btn_8=new Button();
+        btn_8=new Button();
         btn_8.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_8.setGraphic(imageView8);
         
-        Button btn_9=new Button();
+        btn_9=new Button();
         btn_9.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
         btn_9.setGraphic(imageView9);
         
@@ -169,7 +177,63 @@ public class Tablero<E> extends Application {
         
         btn_1.setOnMouseClicked(e -> {
             try {
-                cambiarImagen();
+                cambiarImagen(btn_1);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
+        btn_2.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_2);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_3.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_3);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_4.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_4);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_5.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_5);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_6.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_6);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_7.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_7);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
+        btn_8.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_8);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });btn_9.setOnMouseClicked(e-> {
+            try {
+                cambiarImagen(btn_9);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -195,7 +259,19 @@ public class Tablero<E> extends Application {
         this.turno=turno;
     }
     
-    private void cambiarImagen() throws FileNotFoundException{
+    private boolean actualizarTurno(){
+        if(this.turno==1){
+            this.turno=2;
+            return true;
+        }
+        if(this.turno==2){
+            this.turno=1;
+            return true;
+        }
+        return false;
+    }
+    
+    private void cambiarImagen(Button boton) throws FileNotFoundException{
         if(this.turno==1){
             if(X==1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
@@ -203,7 +279,7 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                btn_1.setGraphic(imageView);
+                boton.setGraphic(imageView);
             }
             if(O==1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -211,7 +287,7 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                btn_1.setGraphic(imageView);
+                boton.setGraphic(imageView);
             }
         }
         if(this.turno==2){
@@ -221,7 +297,8 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                btn_1.setGraphic(imageView);
+                boton.setGraphic(imageView);
+                
             }
             if(O==-1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -229,7 +306,8 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                btn_1.setGraphic(imageView);
+                boton.setGraphic(imageView);
+               
             }
         }
         
