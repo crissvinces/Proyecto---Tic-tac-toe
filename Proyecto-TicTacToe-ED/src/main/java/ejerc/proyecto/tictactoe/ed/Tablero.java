@@ -273,7 +273,6 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                this.turno=2;
             }
             if(O==1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -282,7 +281,6 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                this.turno=2;
             }
         }
         if(this.turno==2){
@@ -293,7 +291,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                this.turno=1;
+                
             }
             if(O==-1){
                 FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
@@ -302,7 +300,7 @@ public class Tablero<E> extends Application {
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
                 boton.setGraphic(imageView);
-                this.turno=1;
+                
             }
         }
         
