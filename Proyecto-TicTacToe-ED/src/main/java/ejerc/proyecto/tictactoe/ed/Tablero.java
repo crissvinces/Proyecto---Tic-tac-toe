@@ -245,12 +245,27 @@ public class Tablero<E> extends Application {
     }
 
     private List<Tablero> hijos;
-    private int[][] matriz=new int[3][3];
+    private String[][] matriz=new String[3][3];
     
-    private boolean actualizarMatriz(){
-        
-         return false;
-        
+    private void actualizarMatriz(int fila , int columna){
+        if(this.turno==1){
+            if(X==1){
+                matriz[fila][columna]="x";
+            }
+            if(O==1){
+               matriz[fila][columna]="o";
+            }
+        }
+        if(this.turno==2){
+            if(X==-1){
+                matriz[fila][columna]="o";
+                
+            }
+            if(O==-1){
+               matriz[fila][columna]="o";
+                
+            }
+        }
     }
     
     public Tablero (int X, int O, int turno){
