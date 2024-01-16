@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -177,7 +178,9 @@ public class Tablero<E> extends Application {
         
         btn_1.setOnMouseClicked(e -> {
             try {
+                actualizarMatriz(0,0);
                 cambiarImagen(btn_1);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -185,55 +188,71 @@ public class Tablero<E> extends Application {
         
         btn_2.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(0,1);
                 cambiarImagen(btn_2);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_3.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(0,2);
                 cambiarImagen(btn_3);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_4.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(1,0);
                 cambiarImagen(btn_4);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_5.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(1,1);
                 cambiarImagen(btn_5);
+                actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_6.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(1,2);
                 cambiarImagen(btn_6);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_7.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(2,0);
                 cambiarImagen(btn_7);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
         btn_8.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(2,1);
                 cambiarImagen(btn_8);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });btn_9.setOnMouseClicked(e-> {
             try {
+                actualizarMatriz(2,2);
                 cambiarImagen(btn_9);
+                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -244,6 +263,46 @@ public class Tablero<E> extends Application {
         stage.show();
     }
 
+    public int getX() {
+        return X;
+    }
+
+    public void setX(int X) {
+        this.X = X;
+    }
+
+    public int getO() {
+        return O;
+    }
+
+    public void setO(int O) {
+        this.O = O;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
+    public List<Tablero> getHijos() {
+        return hijos;
+    }
+
+    public void setHijos(List<Tablero> hijos) {
+        this.hijos = hijos;
+    }
+
+    public String[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(String[][] matriz) {
+        this.matriz = matriz;
+    }
+
     private List<Tablero> hijos;
     private String[][] matriz=new String[3][3];
     
@@ -251,21 +310,19 @@ public class Tablero<E> extends Application {
         if(this.turno==1){
             if(X==1){
                 matriz[fila][columna]="x";
-            }
-            if(O==1){
+            }else if(O==1){
                matriz[fila][columna]="o";
             }
-        }
-        if(this.turno==2){
+        }else if(this.turno==2){
             if(X==-1){
-                matriz[fila][columna]="o";
+                matriz[fila][columna]="x";
                 
-            }
-            if(O==-1){
+            }else if(O==-1){
                matriz[fila][columna]="o";
                 
             }
         }
+        verMatriz();
     }
     
     public Tablero (int X, int O, int turno){
@@ -316,6 +373,96 @@ public class Tablero<E> extends Application {
                 boton.setGraphic(imageView);
             }
         }
-        actualizarTurno();
+       if(comprobarGanador()){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error de Seleccion");
+            alert.setContentText("Porfavor escoga solamente una de las opciones");
+            alert.showAndWait();
+       }
+    }
+    
+    public boolean ganadorFilas(){
+        
+        for(int f=0; f<3 ;f++){
+            String valor1=this.matriz[f][0];
+            String valor2=this.matriz[f][1];
+            String valor3=this.matriz[f][2];
+            if(valor1 !=null && valor2!=null && valor3 != null){
+            if(valor1.equals("x") && valor2.equals("x") && valor3.equals("x")){
+                return true;
+            }
+            if(valor1.equals("o") && valor2.equals("o") && valor3.equals("o")){
+                return true;
+            }
+            }
+        }
+        return false;
+    }
+    
+    public boolean ganadorColumnas(){
+        for(int f=0; f<3 ;f++){
+            String valor1=this.matriz[0][f];
+            String valor2=this.matriz[1][f];
+            String valor3=this.matriz[2][f];
+            if(valor1 !=null && valor2!=null && valor3 != null){
+            if(valor1.equals("x") && valor2.equals("x") && valor3.equals("x")){
+                return true;
+            }
+            if(valor1.equals("o") && valor2.equals("o") && valor3.equals("o")){
+                return true;
+            }
+            }
+        }
+        return false;
+    }
+    
+    public boolean lateral1(){
+        String valor1=this.matriz[0][0];
+        String valor2=this.matriz[1][1];
+        String valor3=this.matriz[2][2];
+        if(valor1 !=null && valor2!=null && valor3 != null){
+        if(valor1.equals("x") && valor2.equals("x") && valor3.equals("x")){
+                return true;
+        }
+        if(valor1.equals("o") && valor2.equals("o") && valor3.equals("o")){
+                return true;
+        }
+        }
+        return false;
+    }
+    
+    public boolean lateral2(){
+        String valor1=this.matriz[0][2];
+        String valor2=this.matriz[1][1];
+        String valor3=this.matriz[2][0];
+        if(valor1 !=null && valor2!=null && valor3 != null){
+        if(valor1.equals("x") && valor2.equals("x") && valor3.equals("x")){
+                return true;
+        }
+        if(valor1.equals("o") && valor2.equals("o") && valor3.equals("o")){
+                return true;
+        }
+        }
+        return false;
+    }
+    
+    
+    public boolean comprobarGanador(){
+        if(ganadorFilas()||ganadorColumnas()||lateral1()||lateral2()){
+            return true;
+        }
+        return false;
+        
+    }
+
+    private void verMatriz() {
+        System.out.println(matriz[0][0]+matriz[0][1]+matriz[0][2]);
+        System.out.println(matriz[1][0]+matriz[1][1]+matriz[1][2]);
+        System.out.println(matriz[2][0]+matriz[2][1]+matriz[2][2]);
+    }
+    
+    public int calcularUtilidad(){
+        
     }
 }
