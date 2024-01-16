@@ -463,6 +463,7 @@ public class Tablero<E> extends Application {
     }
     
     public int calcularUtilidad(){
+        
        return 0;     
     }
 }
