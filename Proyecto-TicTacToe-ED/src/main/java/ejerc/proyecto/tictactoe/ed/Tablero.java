@@ -48,7 +48,15 @@ public class Tablero<E> extends Application {
     private int X;
     private int O;
     int turno=0;
-    int utilidad;
+   private int utilidad;
+
+    public int getUtilidad() {
+        return utilidad;
+    }
+
+    public void setUtilidad(int utilidad) {
+        this.utilidad = utilidad;
+    }
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -291,6 +299,20 @@ public class Tablero<E> extends Application {
     public List<Tablero> getHijos() {
         return hijos;
     }
+    
+    //devuelve la menor utilidad de todos lo nietos
+    public int compararUtilidadesNietos(){
+        return 0;
+    }
+    //devuelve el tablero de la lista de hijos que tenga mayor utilidad de todos. 
+    public Tablero compararUtilidadHijos(){
+        return null;
+    }
+    
+    public boolean addHijo(Tablero t){
+        this.hijos.add(t);
+        return true;
+    }
 
     public void setHijos(List<Tablero> hijos) {
         this.hijos = hijos;
@@ -309,7 +331,7 @@ public class Tablero<E> extends Application {
     
    
     
-    private void actualizarMatriz(int fila , int columna){
+    public void actualizarMatriz(int fila , int columna){
         if(this.turno==1){
             if(X==1){
                 matriz[fila][columna]="x";
@@ -333,6 +355,20 @@ public class Tablero<E> extends Application {
         this.O=O;
         this.turno=turno;
     }
+    
+    public Tablero(){
+        
+    }
+    
+    public Tablero agregarPosiciones(Tablero inicial){
+        for(int f1=0; f1<3; f1++){
+            for(int c1=0; c1<3; c1++){
+                this.matriz[f1][c1]=inicial.matriz[f1][c1];
+            }
+        }
+        return this;
+    }
+    
     
     public void actualizarTurno(){
         this.turno=(this.turno % 2) + 1;
@@ -466,6 +502,7 @@ public class Tablero<E> extends Application {
     }
     
     public int calcularUtilidad(){
+        
        return 0;     
     }
 }
