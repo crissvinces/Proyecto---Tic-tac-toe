@@ -11,10 +11,14 @@ package ejerc.proyecto.tictactoe.ed;
 public class Arbol {
     private Tablero tablero;
     
-    public Tablero minimax(){
+    
+    
+    
+    
+    private Tablero minMax(String [][] matrizActual){
+         
         
         return null;
-    }
     
-    
+    }  
 }

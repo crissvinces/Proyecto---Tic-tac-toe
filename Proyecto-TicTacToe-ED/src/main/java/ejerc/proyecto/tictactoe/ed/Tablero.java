@@ -48,6 +48,7 @@ public class Tablero<E> extends Application {
     private int X;
     private int O;
     int turno=0;
+    int utilidad;
     
      @Override
     public void start(Stage stage) throws Exception {
@@ -305,6 +306,8 @@ public class Tablero<E> extends Application {
 
     private List<Tablero> hijos;
     private String[][] matriz=new String[3][3];
+    
+   
     
     private void actualizarMatriz(int fila , int columna){
         if(this.turno==1){
