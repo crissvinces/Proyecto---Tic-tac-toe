@@ -69,7 +69,7 @@ public class Arbol {
              v.setUtilidad(utilidaNieto);
         }
         
-        
+        tablero.actualizarTurno();
         Tablero retorno = tablero.compararUtilidadHijos();
         return retorno;
         

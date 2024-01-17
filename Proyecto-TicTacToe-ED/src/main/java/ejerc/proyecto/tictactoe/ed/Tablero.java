@@ -570,13 +570,6 @@ public class Tablero<E> extends Application {
         System.out.println(matriz[2][0]+matriz[2][1]+matriz[2][2]);
     }
     
-    public int cantidadDiagonales(String e){
-        if(this.matriz[0][0].equals(e)|| this.matriz[1][1].equals(e)|| this.matriz[2][2].equals(e)){
-            
-        }
-        return 0;
-    }
-    
     public int utilidadParaCasosCompu(){
         if(this.X==-1){
             return calcularUtilidad();
