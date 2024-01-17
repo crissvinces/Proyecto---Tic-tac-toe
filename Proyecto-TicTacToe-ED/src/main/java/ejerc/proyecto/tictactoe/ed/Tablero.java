@@ -6,6 +6,7 @@ package ejerc.proyecto.tictactoe.ed;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
 import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -384,6 +385,7 @@ public class Tablero<E> extends Application {
         this.X=X;
         this.O=O;
         this.turno=turno;
+        this.hijos= new LinkedList();
     }
     
     public Tablero(){
@@ -402,6 +404,31 @@ public class Tablero<E> extends Application {
     
     public void actualizarTurno(){
         this.turno=(this.turno % 2) + 1;
+        System.out.print("El turno: "+this.turno);
+        
+    }
+    
+    public Button conseguirBoton(int fila,int columna){
+        if(fila==0 && columna==0){
+            return btn_1;
+        }if(fila==0 && columna==1){
+            return btn_2;
+        }if(fila==0 && columna==2){
+            return btn_3;
+        }if(fila==1 && columna==0){
+            return btn_4;
+        }if(fila==1 && columna==1){
+            return btn_5;
+        }if(fila==1 && columna==2){
+            return btn_6;
+        }if(fila==2 && columna==0){
+            return btn_7;
+        }if(fila==2 && columna==1){
+            return btn_8;
+        }if(fila==2 && columna==2){
+            return btn_9;
+        }
+        return null;
     }
     
     private void cambiarImagen(Button boton) throws FileNotFoundException{
@@ -425,13 +452,25 @@ public class Tablero<E> extends Application {
             }
         }
         else if(this.turno==2){
+            int fila=0;
+            int columna=0;
+            Arbol arbol= new Arbol(this);
+            Tablero tableroRecrear=arbol.minmax();
+             for (int f = 0; f < 3; f++) {
+                    for (int c = 0; c < 3; c++){
+                        if(this.matriz[f][c]==null && tableroRecrear.getMatriz()[f][c]!=null){
+                        fila=f;
+                        columna=c;
+                        }
+                    }
+             }
             if(X==-1){
                 FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                boton.setGraphic(imageView);
+                conseguirBoton( fila, columna).setGraphic(imageView);
             }
             else if(O==-1){
                 FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
@@ -439,7 +478,7 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                boton.setGraphic(imageView);
+                conseguirBoton( fila, columna).setGraphic(imageView);
             }
         }
        if(comprobarGanador()){

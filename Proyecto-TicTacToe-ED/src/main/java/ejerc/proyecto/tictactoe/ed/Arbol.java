@@ -13,6 +13,10 @@ import java.util.List;
 public class Arbol {
 
     private Tablero tablero;
+    
+    public Arbol(Tablero t){
+        this.tablero=t;
+    }
 
     public Tablero minmax() {
 
@@ -21,7 +25,7 @@ public class Arbol {
             for (int c = 0; c < 3; c++) {
                 String valor = tablero.getMatriz()[f][c];
 
-                if (valor.equals(null)) {
+                if (valor==null) {
                     Tablero temporal = new Tablero(this.tablero.getX(), this.tablero.getO(), tablero.getTurno());
 
                     temporal.agregarPosiciones(this.tablero);
@@ -41,7 +45,7 @@ public class Arbol {
                 String matrizHijo=v.getMatriz()[f][c];
                 
 
-                if (matrizHijo.equals(null)) {
+                if (matrizHijo==null) {
                     Tablero temporal2 = new Tablero(this.tablero.getX(), this.tablero.getO(), tablero.getTurno());
 
                     temporal2.agregarPosiciones(v);
@@ -69,8 +73,7 @@ public class Arbol {
         Tablero retorno = tablero.compararUtilidadHijos();
         return retorno;
         
-      //pendiente calcular utilidad 
-      // c.u hijos, nietos
+     
 
     }
 }
