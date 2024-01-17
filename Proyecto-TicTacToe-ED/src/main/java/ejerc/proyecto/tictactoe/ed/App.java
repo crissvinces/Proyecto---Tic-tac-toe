@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     
     Stage stage1;
-    
+
     @Override
     public void start(Stage stage1) {
         
@@ -33,7 +33,7 @@ public class App extends Application {
         BorderPane root= new BorderPane();
         BorderPane.setAlignment(lbl_title, Pos.CENTER);
         try {
-            FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/tic tac toe.png");
+            FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/tictactoe.png");
             Image image = new Image(input);
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(200);  // Establecer el ancho deseado

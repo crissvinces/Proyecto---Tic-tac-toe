@@ -338,7 +338,7 @@ public class Tablero<E> extends Application {
     private void cambiarImagen(Button boton) throws FileNotFoundException{
         if(this.turno==1){
             if(X==1){
-                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
@@ -347,7 +347,7 @@ public class Tablero<E> extends Application {
                 
             }
             else if(O==1){
-                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
@@ -357,7 +357,7 @@ public class Tablero<E> extends Application {
         }
         else if(this.turno==2){
             if(X==-1){
-                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/X.png");
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
@@ -365,7 +365,7 @@ public class Tablero<E> extends Application {
                 boton.setGraphic(imageView);
             }
             else if(O==-1){
-                FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Circulo.png");
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
@@ -463,6 +463,7 @@ public class Tablero<E> extends Application {
     }
     
     public int calcularUtilidad(){
-        
+       return 0;     
     }
 }
+
