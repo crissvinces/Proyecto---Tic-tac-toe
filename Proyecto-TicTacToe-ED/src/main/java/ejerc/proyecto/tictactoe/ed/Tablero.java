@@ -301,13 +301,43 @@ public class Tablero<E> extends Application {
     }
     
     //devuelve la menor utilidad de todos lo nietos
-    public int compararUtilidadesNietos(){
-        return 0;
+    public int compararUtilidadesNietos() {
+    int menorUtilidadNieto = Integer.MAX_VALUE;
+
+    for (Tablero hijo : hijos) {
+        if (hijo instanceof Tablero) {
+            List<Tablero> nietos = ((Tablero) hijo).getHijos();
+
+            for (Tablero nieto : nietos) {
+                int utilidadNieto = nieto.getUtilidad();
+
+                if (utilidadNieto < menorUtilidadNieto) {
+                    menorUtilidadNieto = utilidadNieto;
+                }
+            }
+        }
     }
+
+    return menorUtilidadNieto;
+}
+    
+
     //devuelve el tablero de la lista de hijos que tenga mayor utilidad de todos. 
-    public Tablero compararUtilidadHijos(){
-        return null;
-    }
+    public Tablero compararUtilidadHijos() {
+        Tablero mejorHijo = null; 
+        int mejorUtilidad = Integer.MIN_VALUE;
+
+        for (Tablero hijo : hijos) {
+            int utilidadHijo = hijo.getUtilidad();
+
+            if (utilidadHijo > mejorUtilidad) {
+                mejorUtilidad = utilidadHijo;
+                mejorHijo = hijo;
+            }
+        }
+
+        return mejorHijo;
+}
     
     public boolean addHijo(Tablero t){
         this.hijos.add(t);

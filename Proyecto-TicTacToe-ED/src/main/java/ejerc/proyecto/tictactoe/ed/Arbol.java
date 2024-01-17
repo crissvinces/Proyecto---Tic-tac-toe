@@ -21,7 +21,7 @@ public class Arbol {
             for (int c = 0; c < 3; c++) {
                 String valor = tablero.getMatriz()[f][c];
 
-                if (valor.equals("")) {
+                if (valor.equals(null)) {
                     Tablero temporal = new Tablero(this.tablero.getX(), this.tablero.getO(), tablero.getTurno());
 
                     temporal.agregarPosiciones(this.tablero);
@@ -41,7 +41,7 @@ public class Arbol {
                 String matrizHijo=v.getMatriz()[f][c];
                 
 
-                if (matrizHijo.equals("")) {
+                if (matrizHijo.equals(null)) {
                     Tablero temporal2 = new Tablero(this.tablero.getX(), this.tablero.getO(), tablero.getTurno());
 
                     temporal2.agregarPosiciones(v);
