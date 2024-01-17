@@ -23,7 +23,7 @@ public class Arbol {
         //generar todos los estados posibles (hijos de tablero)
         for (int f = 0; f < 3; f++) {
             for (int c = 0; c < 3; c++) {
-                String valor = tablero.getMatriz()[f][c];
+                String valor = this.tablero.getMatriz()[f][c];
 
                 if (valor==null) {
                     Tablero temporal = new Tablero(this.tablero.getX(), this.tablero.getO(), tablero.getTurno());
@@ -31,7 +31,7 @@ public class Arbol {
                     temporal.agregarPosiciones(this.tablero);
                     temporal.actualizarMatriz(f, c);
                     //añadir todos los tableros al arbol
-                    tablero.addHijo(temporal);
+                    this.tablero.addHijo(temporal);
                 }
             }
         }
@@ -41,7 +41,7 @@ public class Arbol {
         for (int i = 0; i < tablero.getHijos().size(); i++) {
           for (int f = 0; f < 3; f++) {
             for (int c = 0; c < 3; c++) {
-                Tablero v =  (Tablero) tablero.getHijos().get(i);// maquina virtual exige
+                Tablero v =  (Tablero) this.tablero.getHijos().get(i);// maquina virtual exige
                 String matrizHijo=v.getMatriz()[f][c];
                 
 
@@ -75,5 +75,13 @@ public class Arbol {
         
      
 
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
     }
 }

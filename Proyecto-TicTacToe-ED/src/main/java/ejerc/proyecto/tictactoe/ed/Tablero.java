@@ -46,6 +46,7 @@ public class Tablero<E> extends Application {
     Button btn_7;
     Button btn_8;
     Button btn_9;
+    Button movimientoCompu;
     private int X;
     private int O;
     int turno=0;
@@ -124,6 +125,8 @@ public class Tablero<E> extends Application {
         
         
         
+        movimientoCompu=new Button("Jugada del computador");
+        BorderPane.setAlignment(movimientoCompu, Pos.BOTTOM_CENTER);
         
         btn_1=new Button();
         btn_1.setStyle("-fx-background-color: transparent; -fx-border-width: 0;");
@@ -185,11 +188,21 @@ public class Tablero<E> extends Application {
         
         contenedor.setTop(lbl_title);
         contenedor.setCenter(tablero);
+        contenedor.setBottom(movimientoCompu);
+        
+        movimientoCompu.setOnMouseClicked(e->{
+            try {
+                cambiarImagenCompu();
+                actualizarTurno();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
         
         btn_1.setOnMouseClicked(e -> {
             try {
-                actualizarMatriz(0,0);
                 cambiarImagen(btn_1);
+                actualizarMatriz(0,0);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -198,8 +211,8 @@ public class Tablero<E> extends Application {
         
         btn_2.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(0,1);
                 cambiarImagen(btn_2);
+                actualizarMatriz(0,1);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -207,8 +220,8 @@ public class Tablero<E> extends Application {
         });
         btn_3.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(0,2);
                 cambiarImagen(btn_3);
+                actualizarMatriz(0,2);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -216,8 +229,8 @@ public class Tablero<E> extends Application {
         });
         btn_4.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(1,0);
                 cambiarImagen(btn_4);
+                actualizarMatriz(1,0);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -225,8 +238,8 @@ public class Tablero<E> extends Application {
         });
         btn_5.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(1,1);
                 cambiarImagen(btn_5);
+                actualizarMatriz(1,1);
                 actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -234,8 +247,8 @@ public class Tablero<E> extends Application {
         });
         btn_6.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(1,2);
                 cambiarImagen(btn_6);
+                 actualizarMatriz(1,2);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -243,8 +256,8 @@ public class Tablero<E> extends Application {
         });
         btn_7.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(2,0);
                 cambiarImagen(btn_7);
+                 actualizarMatriz(2,0);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -252,16 +265,16 @@ public class Tablero<E> extends Application {
         });
         btn_8.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(2,1);
                 cambiarImagen(btn_8);
+                actualizarMatriz(2,1);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });btn_9.setOnMouseClicked(e-> {
             try {
-                actualizarMatriz(2,2);
                 cambiarImagen(btn_9);
+                 actualizarMatriz(2,2);
                  actualizarTurno();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -378,6 +391,7 @@ public class Tablero<E> extends Application {
                 
             }
         }
+        
         verMatriz();
     }
     
@@ -404,7 +418,7 @@ public class Tablero<E> extends Application {
     
     public void actualizarTurno(){
         this.turno=(this.turno % 2) + 1;
-        System.out.print("El turno: "+this.turno);
+        System.out.print("El turno: "+this.turno+"\n");
         
     }
     
@@ -431,6 +445,42 @@ public class Tablero<E> extends Application {
         return null;
     }
     
+    private void cambiarImagenCompu() throws FileNotFoundException{
+        if(this.turno==2){
+            int fila=0;
+            int columna=0;
+            Arbol arbol= new Arbol(this);
+            Tablero tableroRecrear=arbol.minmax();
+             for (int f = 0; f < 3; f++) {
+                    for (int c = 0; c < 3; c++){
+                        if(this.matriz[f][c]==null && tableroRecrear.getMatriz()[f][c]!=null){
+                        fila=f;
+                        columna=c;
+                        break;
+                        }
+                        break;
+                    }break;
+             }
+             actualizarMatriz(fila,columna);
+            if(X==-1){
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                conseguirBoton( fila, columna).setGraphic(imageView);
+            }
+            else if(O==-1){
+                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
+                Image image = new Image(input);
+                ImageView imageView= new ImageView(image);
+                imageView.setFitWidth(70); 
+                imageView.setFitHeight(70);
+                conseguirBoton( fila, columna).setGraphic(imageView);
+            }
+        }
+    }
+    
     private void cambiarImagen(Button boton) throws FileNotFoundException{
         if(this.turno==1){
             if(X==1){
@@ -451,36 +501,7 @@ public class Tablero<E> extends Application {
                 boton.setGraphic(imageView);
             }
         }
-        else if(this.turno==2){
-            int fila=0;
-            int columna=0;
-            Arbol arbol= new Arbol(this);
-            Tablero tableroRecrear=arbol.minmax();
-             for (int f = 0; f < 3; f++) {
-                    for (int c = 0; c < 3; c++){
-                        if(this.matriz[f][c]==null && tableroRecrear.getMatriz()[f][c]!=null){
-                        fila=f;
-                        columna=c;
-                        }
-                    }
-             }
-            if(X==-1){
-                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
-                Image image = new Image(input);
-                ImageView imageView= new ImageView(image);
-                imageView.setFitWidth(70); 
-                imageView.setFitHeight(70);
-                conseguirBoton( fila, columna).setGraphic(imageView);
-            }
-            else if(O==-1){
-                FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
-                Image image = new Image(input);
-                ImageView imageView= new ImageView(image);
-                imageView.setFitWidth(70); 
-                imageView.setFitHeight(70);
-                conseguirBoton( fila, columna).setGraphic(imageView);
-            }
-        }
+        
        if(comprobarGanador()){
            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -565,9 +586,9 @@ public class Tablero<E> extends Application {
     }
 
     private void verMatriz() {
-        System.out.println(matriz[0][0]+matriz[0][1]+matriz[0][2]);
-        System.out.println(matriz[1][0]+matriz[1][1]+matriz[1][2]);
-        System.out.println(matriz[2][0]+matriz[2][1]+matriz[2][2]);
+        System.out.println(matriz[0][0]+matriz[0][1]+matriz[0][2]+"\n");
+        System.out.println(matriz[1][0]+matriz[1][1]+matriz[1][2]+"\n");
+        System.out.println(matriz[2][0]+matriz[2][1]+matriz[2][2]+"\n");
     }
     
     public int utilidadParaCasosCompu(){
