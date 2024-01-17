@@ -17,6 +17,10 @@ public class Arbol {
     public Arbol(Tablero t){
         this.tablero=t;
     }
+    
+    public void actualizarArbol(String [][] matriz){
+        this.tablero.setMatriz(matriz);
+    }
 
     public Tablero minmax() {
 

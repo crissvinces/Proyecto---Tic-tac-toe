@@ -392,7 +392,7 @@ public class Tablero<E> extends Application {
             }
         }
         
-        verMatriz();
+        
     }
     
     public Tablero (int X, int O, int turno){
@@ -444,31 +444,46 @@ public class Tablero<E> extends Application {
         }
         return null;
     }
-    
+    private int[] encontrarDiferencias(String[][] matriz1, String[][] matriz2) {
+    int[] posicionDiferencia = new int[]{-1, -1};
+
+    for (int f = 0; f < matriz1.length; f++) {
+        for (int c = 0; c < matriz1[f].length; c++) {
+            if ((matriz1[f][c] == null && matriz2[f][c] != null) ||
+                (matriz1[f][c] != null && !matriz1[f][c].equals(matriz2[f][c]))) {
+                posicionDiferencia[0] = f;
+                posicionDiferencia[1] = c;
+                return posicionDiferencia;
+            }
+        }
+    }
+
+    return posicionDiferencia;
+}
     private void cambiarImagenCompu() throws FileNotFoundException{
         if(this.turno==2){
-            int fila=0;
-            int columna=0;
             Arbol arbol= new Arbol(this);
+            arbol.actualizarArbol(this.matriz);
             Tablero tableroRecrear=arbol.minmax();
-             for (int f = 0; f < 3; f++) {
-                    for (int c = 0; c < 3; c++){
-                        if(this.matriz[f][c]==null && tableroRecrear.getMatriz()[f][c]!=null){
-                        fila=f;
-                        columna=c;
-                        break;
-                        }
-                        break;
-                    }break;
-             }
-             actualizarMatriz(fila,columna);
+            
+            System.out.println("Tablero minmax"+"\n");
+            System.out.println(tableroRecrear.matriz[0][0]+tableroRecrear.matriz[0][1]+tableroRecrear.matriz[0][2]+"\n");
+            System.out.println(tableroRecrear.matriz[1][0]+tableroRecrear.matriz[1][1]+tableroRecrear.matriz[1][2]+"\n");
+            System.out.println(tableroRecrear.matriz[2][0]+tableroRecrear.matriz[2][1]+tableroRecrear.matriz[2][2]+"\n");
+            System.out.println("Fin del tablero minmax");
+            
+            
+            int[] posicion= encontrarDiferencias(this.getMatriz(),tableroRecrear.getMatriz());
+            actualizarMatriz(posicion[0],posicion[1]);
             if(X==-1){
                 FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png");
                 Image image = new Image(input);
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                conseguirBoton( fila, columna).setGraphic(imageView);
+                if(!conseguirBoton( posicion[0], posicion[1]).getGraphic().equals("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png") && !conseguirBoton( posicion[0], posicion[1]).getGraphic().equals("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png" )){
+                    conseguirBoton( posicion[0], posicion[1]).setGraphic(imageView);
+                }
             }
             else if(O==-1){
                 FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Circulo.png");
@@ -476,7 +491,9 @@ public class Tablero<E> extends Application {
                 ImageView imageView= new ImageView(image);
                 imageView.setFitWidth(70); 
                 imageView.setFitHeight(70);
-                conseguirBoton( fila, columna).setGraphic(imageView);
+                if(!conseguirBoton( posicion[0], posicion[1]).getGraphic().equals("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png") && !conseguirBoton( posicion[0], posicion[1]).getGraphic().equals("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/X.png" )){
+                    conseguirBoton( posicion[0], posicion[1]).setGraphic(imageView);
+                }
             }
         }
     }
