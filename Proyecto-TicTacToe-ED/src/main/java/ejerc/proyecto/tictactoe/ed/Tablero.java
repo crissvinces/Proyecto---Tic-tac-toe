@@ -74,7 +74,7 @@ public class Tablero<E> extends Application {
         tablero.setMaxSize(250, 235);
         tablero.setPrefSize(250, 235);
         
-        FileInputStream input = new FileInputStream("C:/Users/crist/OneDrive/Pictures/Blancoo.png");
+        FileInputStream input = new FileInputStream("src/main/java/ejerc/proyecto/tictactoe/ed/imagen/Blancoo.png");
         Image image = new Image(input);
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(70); 
