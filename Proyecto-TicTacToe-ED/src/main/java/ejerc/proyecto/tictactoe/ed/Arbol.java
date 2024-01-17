@@ -47,7 +47,7 @@ public class Arbol {
                     temporal2.agregarPosiciones(v);
                     temporal2.actualizarMatriz(f, c);
                    
-                    temporal2.setUtilidad( temporal2.calcularUtilidad());
+                    temporal2.setUtilidad( temporal2.utilidadParaCasosCompu());
                     
                     
                     v.addHijo(temporal2);

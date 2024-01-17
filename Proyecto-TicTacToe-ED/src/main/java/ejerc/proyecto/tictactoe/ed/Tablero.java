@@ -486,7 +486,7 @@ public class Tablero<E> extends Application {
         return false;
     }
     
-    public boolean lateral1(){
+    public boolean diagonal1(){
         String valor1=this.matriz[0][0];
         String valor2=this.matriz[1][1];
         String valor3=this.matriz[2][2];
@@ -501,7 +501,7 @@ public class Tablero<E> extends Application {
         return false;
     }
     
-    public boolean lateral2(){
+    public boolean diagonal2(){
         String valor1=this.matriz[0][2];
         String valor2=this.matriz[1][1];
         String valor3=this.matriz[2][0];
@@ -518,7 +518,7 @@ public class Tablero<E> extends Application {
     
     
     public boolean comprobarGanador(){
-        if(ganadorFilas()||ganadorColumnas()||lateral1()||lateral2()){
+        if(ganadorFilas()||ganadorColumnas()||diagonal1()||diagonal2()){
             return true;
         }
         return false;
@@ -531,9 +531,125 @@ public class Tablero<E> extends Application {
         System.out.println(matriz[2][0]+matriz[2][1]+matriz[2][2]);
     }
     
-    public int calcularUtilidad(){
-        
-       return 0;     
+    public int cantidadDiagonales(String e){
+        if(this.matriz[0][0].equals(e)|| this.matriz[1][1].equals(e)|| this.matriz[2][2].equals(e)){
+            
+        }
+        return 0;
     }
+    
+    public int utilidadParaCasosCompu(){
+        if(this.X==-1){
+            return calcularUtilidad();
+        }if(this.O==-1){
+            int utilidad=-1*calcularUtilidad();
+            return utilidad;
+        }
+        return 0;
+    }
+    
+
+    public int calcularUtilidad() {
+        int utilidad = 0;
+
+        // Comprobar filas
+        for (int f = 0; f < 3; f++) {
+            utilidad += evaluarFila(f);
+        }
+
+        // Comprobar columnas
+        for (int c = 0; c < 3; c++) {
+            utilidad += evaluarColumna(c);
+        }
+
+        // Comprobar diagonales
+        utilidad += evaluarDiagonalPrincipal();
+        utilidad += evaluarDiagonalSecundaria();
+
+        return utilidad;
+    }
+
+    private int evaluarFila(int fila) {
+        int xCount = 0;
+        int oCount = 0;
+
+        for (int c = 0; c < 3; c++) {
+            String valor = matriz[fila][c];
+
+            if ("x".equals(valor)) {
+                xCount++;
+            } else if ("o".equals(valor)) {
+                oCount++;
+            }
+        }
+
+        return calcularUtilidadParcial(xCount, oCount);
+    }
+
+    private int evaluarColumna(int columna) {
+        int xCount = 0;
+        int oCount = 0;
+
+        for (int f = 0; f < 3; f++) {
+            String valor = matriz[f][columna];
+
+            if ("x".equals(valor)) {
+                xCount++;
+            } else if ("o".equals(valor)) {
+                oCount++;
+            }
+        }
+
+        return calcularUtilidadParcial(xCount, oCount);
+    }
+
+    private int evaluarDiagonalPrincipal() {
+        int xCount = 0;
+        int oCount = 0;
+
+        for (int i = 0; i < 3; i++) {
+            String valor = matriz[i][i];
+
+            if ("x".equals(valor)) {
+                xCount++;
+            } else if ("o".equals(valor)) {
+                oCount++;
+            }
+        }
+
+        return calcularUtilidadParcial(xCount, oCount);
+    }
+
+    private int evaluarDiagonalSecundaria() {
+        int xCount = 0;
+        int oCount = 0;
+
+        for (int i = 0; i < 3; i++) {
+            String valor = matriz[i][2 - i];
+
+            if ("x".equals(valor)) {
+                xCount++;
+            } else if ("o".equals(valor)) {
+                oCount++;
+            }
+        }
+
+        return calcularUtilidadParcial(xCount, oCount);
+    }
+
+    private int calcularUtilidadParcial(int xCount, int oCount) {
+         if (xCount == 2 && oCount == 0) {
+            return 1; // Dos X en una fila
+        } else if (xCount == 1 && oCount == 0) {
+            return 1; // Una X en una fila
+        } else if (xCount == 0 && oCount == 2) {
+            return -1; // Dos O en una fila
+        } else if (xCount == 0 && oCount == 1) {
+            return -1; // Una O en una fila
+        } else {
+            return 0; // La fila esta vacia
+        }
+    }
+
 }
 
